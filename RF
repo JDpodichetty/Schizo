@@ -5,11 +5,15 @@ import numpy as np
 #import data file
 dataset = pd.read_csv("C:/Users/jpodiche/Dropbox/PostDoc/IU/schizophrenia project/CATIE/python/3month_outcome_data_baseline_only.csv")  
 
-dataset.head() 
+dataset.head()
+
+#impute missing values
+from sklearn.preprocessing import Imputer 
+imp = Imputer(missing_values=0, stragety = 'mean', axis =0) #taking mean of the feature among patients to fill in missing values 
 
 #convert M and F to binary 
-dataset.gender[dataset.gender == 'M'] =1
-dataset.gender[dataset.gender == 'F'] =0
+dataset.gender[dataset.gender == 'M'] = 1
+dataset.gender[dataset.gender == 'F'] = 0
 dataset.head() 
 
 #remove columns with 80% or more missing data
